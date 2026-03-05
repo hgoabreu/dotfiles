@@ -1,0 +1,21 @@
+# Machine-specific overrides -- copy to ~/.zshrc.local and customize
+# This file is NOT symlinked, it stays local to each machine
+
+# --- Completions ---
+# source <(kubectl completion zsh)
+# source <(kind completion zsh)
+
+# --- SSH via 1Password (password auth) ---
+# Automatically fills SSH password from 1Password using op CLI + sshpass.
+# 1. Create a Login item in 1Password with your password field.
+# 2. Uncomment and set the path below (vault/item/field).
+# ssh() {
+#   local pass
+#   pass=$(op read "op://Private/Item/password" 2>/dev/null)
+#   if [[ -n "$pass" ]]; then
+#     SSHPASS="$pass" sshpass -e command ssh "$@"
+#   else
+#     command ssh "$@"
+#   fi
+# }
+#

@@ -1,0 +1,90 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+DOTFILES="$(cd "$(dirname "$0")" && pwd)"
+export DOTFILES
+
+info()  { printf "\033[1;34m[dotfiles]\033[0m %s\n" "$1"; }
+ok()    { printf "\033[1;32m[dotfiles]\033[0m %s\n" "$1"; }
+warn()  { printf "\033[1;33m[dotfiles]\033[0m %s\n" "$1"; }
+export -f info ok warn
+
+# ─── Homebrew ───────────────────────────────────────────────
+if ! command -v brew &>/dev/null; then
+  info "Installing Homebrew..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+info "Installing packages from Brewfile..."
+HOMEBREW_NO_AUTO_UPDATE=1 brew bundle --file="$DOTFILES/Brewfile" || warn "Some packages may have failed (non-fatal)"
+
+# ─── Symlinks ───────────────────────────────────────────────
+symlink() {
+  local src="$1" dst="$2"
+  if [ -L "$dst" ]; then
+    rm "$dst"
+  elif [ -e "$dst" ]; then
+    warn "Backing up existing $dst -> ${dst}.bak"
+    mv "$dst" "${dst}.bak"
+  fi
+  mkdir -p "$(dirname "$dst")"
+  ln -s "$src" "$dst"
+  ok "Linked $dst -> $src"
+}
+
+info "Creating symlinks..."
+while IFS=: read -r src dst || [[ -n "$src" ]]; do
+  [[ "$src" =~ ^#|^[[:space:]]*$ ]] && continue
+  dst="${dst/\$HOME/$HOME}"
+  symlink "$DOTFILES/$src" "$dst"
+done < "$DOTFILES/symlinks"
+
+# ─── SSH socket dir ─────────────────────────────────────────
+mkdir -p "$HOME/.ssh/socket"
+chmod 700 "$HOME/.ssh" "$HOME/.ssh/socket"
+ok "SSH socket directory ready"
+
+# ─── Local overrides ────────────────────────────────────────
+if [ ! -f "$HOME/.zshrc.local" ]; then
+  info "Creating ~/.zshrc.local from example..."
+  cp "$DOTFILES/zsh/zshrc.local.example" "$HOME/.zshrc.local"
+  warn "Edit ~/.zshrc.local for machine-specific config (certs, SDKMAN, NVM, etc.)"
+fi
+
+if [ ! -f "$HOME/.ssh/config.local" ]; then
+  info "Creating ~/.ssh/config.local from example..."
+  mkdir -p "$HOME/.ssh"
+  cp "$DOTFILES/ssh/config.local.example" "$HOME/.ssh/config.local"
+  warn "Edit ~/.ssh/config.local for machine-specific SSH hosts"
+fi
+
+# ─── Tool install scripts ──────────────────────────────────
+info "Running install scripts..."
+for script in "$DOTFILES/scripts/"*.sh; do
+  [ -f "$script" ] || continue
+  info "Running $(basename "$script")..."
+  bash "$script"
+done
+
+# ─── Post-install validation ─────────────────────────────────
+info "Validating configuration..."
+
+if command -v tmux &>/dev/null; then
+  if tmux -L _cfg_check -f "$HOME/.tmux.conf" start-server \; kill-server 2>/dev/null; then
+    ok "tmux config is valid"
+  else
+    warn "tmux config has errors — run 'tmux source ~/.tmux.conf' to see details"
+  fi
+fi
+
+# ─── Done ────────────────────────────────────────────────────
+echo ""
+ok "Setup complete!"
+echo ""
+echo "  Next steps:"
+echo "  1. Edit ~/.zshrc.local for machine-specific settings"
+echo "  2. Open Ghostty -- tmux starts automatically"
+echo "  3. Inside tmux: Ctrl+Space I to install plugins, Ctrl+Space q to reload config"
+echo "  4. Cheatsheet at ~/tmux-cheatsheet.md"
+echo ""

@@ -1,0 +1,9 @@
+# src (relative to dotfiles root) : dst (absolute path)
+zsh/zshrc:$HOME/.zshrc
+tmux/tmux.conf:$HOME/.tmux.conf
+ghostty/config:$HOME/.config/ghostty/config
+nvim:$HOME/.config/nvim
+cheatsheet.md:$HOME/tmux-cheatsheet.md
+ssh/config:$HOME/.ssh/config
+k9s/config.yaml:$HOME/.config/k9s/config.yaml
+k9s/skins:$HOME/.config/k9s/skins

@@ -1,0 +1,87 @@
+# Everforest Dark Hard skin for k9s
+# Matches the Ghostty/tmux Everforest Dark Hard palette
+k9s:
+  body:
+    fgColor: "#d3c6aa"
+    bgColor: "default"
+    logoColor: "#83c092"
+  prompt:
+    fgColor: "#d3c6aa"
+    bgColor: "default"
+    suggestColor: "#83c092"
+  info:
+    fgColor: "#7fbbb3"
+    sectionColor: "#d3c6aa"
+  dialog:
+    fgColor: "#d3c6aa"
+    bgColor: "#1e2326"
+    buttonFgColor: "#1e2326"
+    buttonBgColor: "#7fbbb3"
+    buttonFocusFgColor: "#1e2326"
+    buttonFocusBgColor: "#83c092"
+    labelFgColor: "#e69875"
+    fieldFgColor: "#d3c6aa"
+  frame:
+    border:
+      fgColor: "#374145"
+      focusColor: "#7fbbb3"
+    menu:
+      fgColor: "#d3c6aa"
+      keyColor: "#7fbbb3"
+      numKeyColor: "#dbbc7f"
+    crumbs:
+      fgColor: "#1e2326"
+      bgColor: "#7fbbb3"
+      activeColor: "#83c092"
+    status:
+      newColor: "#7fbbb3"
+      modifyColor: "#dbbc7f"
+      addColor: "#a7c080"
+      pendingColor: "#e69875"
+      errorColor: "#e67e80"
+      highlightColor: "#83c092"
+      killColor: "#d699b6"
+      completedColor: "#7a8478"
+    title:
+      fgColor: "#7fbbb3"
+      bgColor: "default"
+      highlightColor: "#83c092"
+      counterColor: "#dbbc7f"
+      filterColor: "#d699b6"
+  views:
+    charts:
+      bgColor: "default"
+      defaultDialColors:
+        - "#7fbbb3"
+        - "#e67e80"
+      defaultChartColors:
+        - "#7fbbb3"
+        - "#e67e80"
+    table:
+      fgColor: "#d3c6aa"
+      bgColor: "default"
+      cursorFgColor: "#1e2326"
+      cursorBgColor: "#7fbbb3"
+      markColor: "#dbbc7f"
+      header:
+        fgColor: "#7fbbb3"
+        bgColor: "default"
+        sorterColor: "#83c092"
+    xray:
+      fgColor: "#d3c6aa"
+      bgColor: "default"
+      cursorColor: "#7fbbb3"
+      cursorTextColor: "#1e2326"
+      graphicColor: "#7fbbb3"
+    yaml:
+      keyColor: "#7fbbb3"
+      colonColor: "#7a8478"
+      valueColor: "#d3c6aa"
+    logs:
+      fgColor: "#d3c6aa"
+      bgColor: "default"
+      indicator:
+        fgColor: "#d3c6aa"
+        bgColor: "default"
+        toggleOnColor: "#7fbbb3"
+        toggleOffColor: "#7a8478"

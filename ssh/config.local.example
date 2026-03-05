@@ -1,0 +1,10 @@
+# Machine-specific SSH host overrides — not tracked in dotfiles
+# Copy to ~/.ssh/config.local and customize
+
+# --- Work hosts (example) ---
+# Host *.company.net *.internal.net
+#     Port 22
+#     User your.username
+#     LogLevel error
+#     UserKnownHostsFile /dev/null
+#     StrictHostKeyChecking no
