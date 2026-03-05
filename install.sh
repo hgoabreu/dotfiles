@@ -19,6 +19,16 @@ fi
 info "Installing packages from Brewfile..."
 HOMEBREW_NO_AUTO_UPDATE=1 brew bundle --file="$DOTFILES/Brewfile" || warn "Some packages may have failed (non-fatal)"
 
+# ─── Tool install scripts ──────────────────────────────────
+# Run BEFORE symlinks so that installers (e.g. Oh My Zsh) that create
+# default dotfiles don't overwrite our managed symlinks.
+info "Running install scripts..."
+for script in "$DOTFILES/scripts/"*.sh; do
+  [ -f "$script" ] || continue
+  info "Running $(basename "$script")..."
+  bash "$script"
+done
+
 # ─── Symlinks ───────────────────────────────────────────────
 symlink() {
   local src="$1" dst="$2"
@@ -59,13 +69,19 @@ if [ ! -f "$HOME/.ssh/config.local" ]; then
   warn "Edit ~/.ssh/config.local for machine-specific SSH hosts"
 fi
 
-# ─── Tool install scripts ──────────────────────────────────
-info "Running install scripts..."
-for script in "$DOTFILES/scripts/"*.sh; do
-  [ -f "$script" ] || continue
-  info "Running $(basename "$script")..."
-  bash "$script"
-done
+# ─── TPM plugin install ──────────────────────────────────────
+TPM_BIN="/opt/homebrew/opt/tpm/share/tpm/bin/install_plugins"
+if [ -x "$TPM_BIN" ]; then
+  info "Installing tmux plugins via TPM..."
+  "$TPM_BIN" || warn "TPM plugin install had issues (non-fatal)"
+  ok "tmux plugins installed"
+fi
+
+# ─── Kill stale tmux server ──────────────────────────────────
+if command -v tmux &>/dev/null && tmux list-sessions &>/dev/null; then
+  warn "Killing existing tmux server so new config takes effect on next launch"
+  tmux kill-server 2>/dev/null || true
+fi
 
 # ─── Post-install validation ─────────────────────────────────
 info "Validating configuration..."
