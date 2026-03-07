@@ -1,10 +1,6 @@
 Include ~/.ssh/config.local
 
 Host *
-    # Requires 1Password desktop with "Connect with 1Password CLI" enabled in Settings → Developer
-    IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
-    IgnoreUnknown UseKeychain
-    UseKeychain yes
     AddKeysToAgent yes
     PermitLocalCommand yes
     ServerAliveInterval 15
@@ -12,3 +8,9 @@ Host *
     ControlMaster auto
     ControlPersist 600
     ControlPath ~/.ssh/socket/%C
+
+# macOS: 1Password SSH agent (skipped on Linux — socket doesn't exist)
+Match host * exec "test -S ~/Library/'Group Containers'/2BUA8C4S2C.com.1password/t/agent.sock"
+    IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+    IgnoreUnknown UseKeychain
+    UseKeychain yes
