@@ -1,6 +1,6 @@
 # dotfiles
 
-Opinionated, terminal-first developer environment for macOS and headless Linux machines. Tmux keybindings and layout functions inspired by [Omarchy](https://omakub.org/). One command bootstrap on either platform.
+Opinionated, terminal-first developer environment for macOS and headless Linux machines. Tmux keybindings and layout functions inspired by [Omarchy](https://github.com/basecamp/omarchy). One command bootstrap on either platform.
 
 ## What's included
 
