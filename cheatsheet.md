@@ -107,6 +107,34 @@ tdl claude:                 tsl 4 claude:
 
 ---
 
+## Window Management (yabai + skhd)
+
+Modifier: `Ctrl+Cmd` for all shortcuts. Float layout with 12px padding.
+
+### Snap to Grid
+
+| Action              | Keys                          |
+|---------------------|-------------------------------|
+| Left half           | `Ctrl+Cmd+Left`               |
+| Right half          | `Ctrl+Cmd+Right`              |
+| Top half            | `Ctrl+Cmd+Up`                 |
+| Bottom half         | `Ctrl+Cmd+Down`               |
+| Top-left quarter    | `Ctrl+Cmd+u`                  |
+| Top-right quarter   | `Ctrl+Cmd+i`                  |
+| Bottom-left quarter | `Ctrl+Cmd+j`                  |
+| Bottom-right quarter| `Ctrl+Cmd+k`                  |
+| Left third          | `Ctrl+Cmd+d`                  |
+| Center third        | `Ctrl+Cmd+e`                  |
+| Right third         | `Ctrl+Cmd+f`                  |
+| Left two-thirds     | `Ctrl+Cmd+g`                  |
+| Right two-thirds    | `Ctrl+Cmd+h`                  |
+| Fullscreen (padded) | `Ctrl+Cmd+Return`             |
+| Center (2/3 size)   | `Ctrl+Cmd+c`                  |
+
+Mouse: `Alt+Click` to move, `Alt+Right-click` to resize.
+
+---
+
 ## fzf (in shell)
 
 | Action                    | Keys      |

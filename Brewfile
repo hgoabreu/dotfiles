@@ -1,4 +1,5 @@
 # Taps
+tap "koekeishiya/formulae"
 
 # --- Terminal & Shell ---
 cask "ghostty"
@@ -27,8 +28,11 @@ brew "kubectl"
 brew "kind"
 brew "helm"
 
+# --- Window Management ---
+brew "yabai"
+brew "skhd"
+
 # --- Apps ---
-cask "rectangle"
 cask "1password"
 cask "1password-cli"
 

@@ -3,7 +3,6 @@ window-decoration = false
 macos-option-as-alt = left
 window-padding-x = 4
 window-padding-y = 4
-fullscreen = true
 macos-non-native-fullscreen = visible-menu
 term = xterm-256color
 theme = Everforest Dark Hard

@@ -1,0 +1,24 @@
+# Halves
+ctrl + cmd - left  : yabai -m window --grid 1:2:0:0:1:1
+ctrl + cmd - right : yabai -m window --grid 1:2:1:0:1:1
+ctrl + cmd - up    : yabai -m window --grid 2:1:0:0:1:1
+ctrl + cmd - down  : yabai -m window --grid 2:1:0:1:1:1
+
+# Quarters (u/i = top-left/right, j/k = bottom-left/right)
+ctrl + cmd - u : yabai -m window --grid 2:2:0:0:1:1
+ctrl + cmd - i : yabai -m window --grid 2:2:1:0:1:1
+ctrl + cmd - j : yabai -m window --grid 2:2:0:1:1:1
+ctrl + cmd - k : yabai -m window --grid 2:2:1:1:1:1
+
+# Thirds
+ctrl + cmd - d : yabai -m window --grid 1:3:0:0:1:1
+ctrl + cmd - e : yabai -m window --grid 1:3:1:0:1:1
+ctrl + cmd - f : yabai -m window --grid 1:3:2:0:1:1
+
+# Two-thirds
+ctrl + cmd - g : yabai -m window --grid 1:3:0:0:2:1
+ctrl + cmd - h : yabai -m window --grid 1:3:1:0:2:1
+
+# Fullscreen (respects padding) and center
+ctrl + cmd - return : yabai -m window --grid 1:1:0:0:1:1
+ctrl + cmd - c      : yabai -m window --grid 6:6:1:1:4:4

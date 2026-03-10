@@ -1,0 +1,24 @@
+#!/usr/bin/env sh
+
+# Layout
+yabai -m config layout float
+
+# Padding (float mode: effective padding is set in skhdrc via move/resize commands)
+yabai -m config top_padding    8
+yabai -m config bottom_padding 8
+yabai -m config left_padding   8
+yabai -m config right_padding  8
+yabai -m config window_gap     8
+
+# Mouse
+yabai -m config mouse_modifier alt
+yabai -m config mouse_action1 move
+yabai -m config mouse_action2 resize
+
+# Rules
+yabai -m rule --add app="Ghostty" grid=1:1:0:0:1:1
+yabai -m rule --add app="System Settings" manage=off
+yabai -m rule --add app="Calculator" manage=off
+yabai -m rule --add title="Preferences" manage=off
+
+echo "yabai configuration loaded"
