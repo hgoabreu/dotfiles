@@ -67,11 +67,11 @@ Status bar at the top, Catppuccin Mocha theme.
 
 | Action              | Keys                                  |
 |---------------------|---------------------------------------|
-| Enter copy mode     | `Ctrl+Space [`                        |
+| Enter copy mode     | `Ctrl+Space v` (or `Ctrl+Space [`)    |
 | Scroll up/down      | `k` / `j`                             |
 | Start selection     | `v`                                   |
 | Copy + exit         | `y` (copies to macOS clipboard)       |
-| Page up/down        | `Ctrl+b` / `Ctrl+f`                  |
+| Half-page up/down   | `Ctrl+u` / `Ctrl+d`                  |
 | Mouse drag          | Copies to clipboard                   |
 
 ### Misc
